@@ -7,7 +7,7 @@ import express, { NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import PrettyError from "pretty-error";
-import { AppContextTypes } from "./context";
+import { AppContextType } from "./context";
 import App from "./components/App";
 import Html from "./components/Html";
 import { ErrorPageWithoutStyle } from "./routes/error/ErrorPage";
@@ -81,7 +81,7 @@ app.get("*", async (req, res, next) => {
 
         // Global (context) variables that can be easily accessed from any React component
         // https://facebook.github.io/react/docs/context.html
-        const context: AppContextTypes = {
+        const context: AppContextType = {
             // The twins below are wild, be careful!
             pathname: req.path,
             query: req.query,

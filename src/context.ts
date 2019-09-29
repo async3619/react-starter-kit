@@ -3,14 +3,14 @@ import { createContext } from "react";
 import ApolloClient from "apollo-client";
 import { NormalizedCacheObject } from "apollo-cache-inmemory";
 
-export type AppContextTypes = {
+export type AppContextType = {
     pathname: string;
     query?: Object;
     params?: Object;
     client: ApolloClient<NormalizedCacheObject>;
 };
 
-const AppContext = createContext<AppContextTypes>({
+const AppContext = createContext<AppContextType>({
     pathname: "",
     query: {},
     params: {},

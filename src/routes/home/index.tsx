@@ -4,7 +4,19 @@ import Home from "./Home";
 
 import Layout from "../../components/Layout";
 
-async function action() {
+import { RouteContext } from "../../types";
+import { GuestsDocument, GuestsQuery, GuestsQueryVariables } from "../../__generated__/graphql.client";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function action({ client }: RouteContext) {
+    const {
+        data: { guests },
+    } = await client.query<GuestsQuery, GuestsQueryVariables>({
+        query: GuestsDocument,
+    });
+
+    console.info(guests);
+
     return {
         title: "React Starter Kit",
         chunks: ["home"],

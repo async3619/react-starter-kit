@@ -1,20 +1,16 @@
-import { GraphQLSchema } from "graphql";
+import path from "path";
 import { BuildSchemaOptions, buildSchemaSync } from "type-graphql";
 
 import GuestsResolver from "./guests/guests.resolver";
 
-let builtSchema: GraphQLSchema | null = null;
-function buildSchema(options?: Omit<BuildSchemaOptions, "resolvers" | "dateScalarMode">) {
-    if (!builtSchema) {
-        builtSchema = buildSchemaSync({
-            resolvers: [GuestsResolver],
-            dateScalarMode: "timestamp",
+export function buildSchema(options?: Omit<BuildSchemaOptions, "resolvers" | "dateScalarMode">) {
+    return buildSchemaSync({
+        resolvers: [GuestsResolver],
+        dateScalarMode: "timestamp",
+        emitSchemaFile: __DEV__ ? path.resolve(process.cwd(), "schema.graphql") : undefined,
 
-            ...options,
-        });
-    }
-
-    return builtSchema;
+        ...options,
+    });
 }
 
 const schema = buildSchema();

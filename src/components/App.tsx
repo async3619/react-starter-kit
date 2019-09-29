@@ -4,11 +4,11 @@ import ApolloClient from "apollo-client";
 import { NormalizedCacheObject } from "apollo-cache-inmemory";
 import StyleContext from "isomorphic-style-loader/StyleContext";
 
-import AppContext, { AppContextTypes } from "../context";
+import AppContext, { AppContextType } from "../context";
 
 interface Props {
     insertCss: Function;
-    context: AppContextTypes;
+    context: AppContextType;
     children: ReactNode;
     client: ApolloClient<NormalizedCacheObject>;
 }

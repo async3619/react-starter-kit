@@ -57,6 +57,10 @@
         "@babel/preset-env": "^7.6.2",
         "@babel/preset-react": "^7.0.0",
         "@babel/preset-typescript": "^7.6.0",
+        "@graphql-codegen/cli": "^1.7.0",
+        "@graphql-codegen/typescript": "^1.7.0",
+        "@graphql-codegen/typescript-operations": "^1.7.0",
+        "@graphql-codegen/typescript-react-apollo": "^1.7.0",
         "@types/babel-core": "^6.25.6",
         "@types/babel__core": "^7.1.3",
         "@types/body-parser": "^1.17.0",
@@ -192,7 +196,7 @@
         "test-cover": "yarn run test --coverage",
         "coverage": "yarn run test-cover && opn coverage/lcov-report/index.html",
         "build-stats": "yarn run build --release --analyse",
-        "codegen": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run codegen",
+        "schema": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run schema",
         "clean": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run clean",
         "copy": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run copy",
         "bundle": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run bundle",
@@ -200,6 +204,8 @@
         "deploy": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run deploy",
         "render": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run render",
         "serve": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run runServer",
-        "start": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run start"
+        "start": "env-cmd -f ./tools/envs/.env.dev ts-node tools/run start",
+        "codegen": "yarn run schema && graphql-codegen --config codegen.yml",
+        "codegen-watch": "graphql-codegen --config codegen.yml --watch"
     }
 }

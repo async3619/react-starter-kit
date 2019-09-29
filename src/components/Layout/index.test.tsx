@@ -6,16 +6,21 @@ import renderer from "react-test-renderer";
 
 import App from "../App";
 import Layout from ".";
+import createApolloClient from "../../utils/createApolloClient.server";
 
 describe("Layout", () => {
     test("renders children correctly", () => {
+        const client = createApolloClient({} as any, {} as any);
+
         const wrapper = renderer
             .create(
                 <App
                     context={{
                         pathname: "",
                         query: {},
+                        client,
                     }}
+                    client={client}
                     insertCss={() => {}}
                 >
                     <Layout>

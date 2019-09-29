@@ -8,7 +8,7 @@ import App from "./components/App";
 import history from "./history";
 import { updateMeta } from "./DOMUtils";
 import router from "./router";
-import { AppContextTypes } from "./context";
+import { AppContextType } from "./context";
 
 import createApolloClient from "./utils/createApolloClient.client";
 
@@ -25,7 +25,7 @@ const insertCss = (...styles: any[]) => {
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 const apolloClient = createApolloClient();
-const context: AppContextTypes = { pathname: "", client: apolloClient };
+const context: AppContextType = { pathname: "", client: apolloClient };
 
 const container = document.getElementById("app");
 let currentLocation = history.location;

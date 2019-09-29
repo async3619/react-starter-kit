@@ -7,4 +7,9 @@ export default class GuestsResolver {
     public async guests(): Promise<number[]> {
         return [];
     }
+
+    @Query(returns => Int)
+    public async guestCount(): Promise<number> {
+        return 0;
+    }
 }
