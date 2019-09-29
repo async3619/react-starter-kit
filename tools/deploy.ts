@@ -62,40 +62,24 @@ async function deploy() {
     // Changing a remote's URL
     let isRemoteExists = false;
     try {
-        await execa(
-            "git",
-            ["config", "--get", `remote.${remote.name}.url`],
-            options,
-        );
+        await execa("git", ["config", "--get", `remote.${remote.name}.url`], options);
         isRemoteExists = true;
     } catch (error) {
         /* skip */
     }
-    await execa(
-        "git",
-        ["remote", isRemoteExists ? "set-url" : "add", remote.name, remote.url],
-        options,
-    );
+    await execa("git", ["remote", isRemoteExists ? "set-url" : "add", remote.name, remote.url], options);
 
     // Fetch the remote repository if it exists
     let isRefExists = false;
     try {
-        await execa(
-            "git",
-            ["ls-remote", "--quiet", "--exit-code", remote.url, remote.branch],
-            options,
-        );
+        await execa("git", ["ls-remote", "--quiet", "--exit-code", remote.url, remote.branch], options);
         isRefExists = true;
     } catch (error) {
         await execa("git", ["update-ref", "-d", "HEAD"], options);
     }
     if (isRefExists) {
         await execa("git", ["fetch", remote.name], options);
-        await execa(
-            "git",
-            ["reset", `${remote.name}/${remote.branch}`, "--hard"],
-            options,
-        );
+        await execa("git", ["reset", `${remote.name}/${remote.branch}`, "--hard"], options);
         await execa("git", ["clean", "--force"], options);
     }
 
@@ -116,29 +100,15 @@ async function deploy() {
     // Push the contents of the build folder to the remote server via Git
     await execa("git", ["add", ".", "--all"], options);
     try {
-        await execa(
-            "git",
-            ["diff", "--cached", "--exit-code", "--quiet"],
-            options,
-        );
+        await execa("git", ["diff", "--cached", "--exit-code", "--quiet"], options);
     } catch (error) {
-        await execa(
-            "git",
-            ["commit", "--message", `Update ${new Date().toISOString()}`],
-            options,
-        );
+        await execa("git", ["commit", "--message", `Update ${new Date().toISOString()}`], options);
     }
-    await execa(
-        "git",
-        ["push", remote.name, `master:${remote.branch}`, "--set-upstream"],
-        options,
-    );
+    await execa("git", ["push", remote.name, `master:${remote.branch}`, "--set-upstream"], options);
 
     // Check if the site was successfully deployed
     const response = await fetch(remote.website);
-    console.info(
-        `${remote.website} => ${response.status} ${response.statusText}`,
-    );
+    console.info(`${remote.website} => ${response.status} ${response.statusText}`);
 }
 
 export default deploy;

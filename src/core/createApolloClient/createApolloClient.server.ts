@@ -11,10 +11,7 @@ import {
     defaults as cacheDefaults,
 } from "../../data/graphql/OnMemoryState/schema";
 
-export default function createApolloClient(
-    schema: SchemaLink.Options,
-    partialCacheDefaults: Object,
-) {
+export default function createApolloClient(schema: SchemaLink.Options, partialCacheDefaults: Object) {
     const cache = createCache();
 
     cache.writeData({
@@ -25,9 +22,7 @@ export default function createApolloClient(
         onError(({ graphQLErrors, networkError }) => {
             if (graphQLErrors)
                 graphQLErrors.map(({ message, locations, path }) =>
-                    console.warn(
-                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-                    ),
+                    console.warn(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
                 );
             if (networkError) console.warn(`[Network error]: ${networkError}`);
         }),

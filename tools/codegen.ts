@@ -31,10 +31,7 @@ export default async function codegen() {
     // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-unresolved
     const builtSchema = require("../build/schema").default;
 
-    const genTargetDir = pathJoin(
-        process.cwd(),
-        "src/__generated__/dataBinders.tsx",
-    );
+    const genTargetDir = pathJoin(process.cwd(), "src/__generated__/dataBinders.tsx");
 
     await generate(
         {
@@ -42,11 +39,7 @@ export default async function codegen() {
             documents: "./src/**/*.{graphql,ts,tsx}",
             generates: {
                 [genTargetDir]: {
-                    plugins: [
-                        "typescript",
-                        "typescript-operations",
-                        "typescript-react-apollo",
-                    ],
+                    plugins: ["typescript", "typescript-operations", "typescript-react-apollo"],
                 },
             },
         },

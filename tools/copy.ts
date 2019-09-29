@@ -48,10 +48,7 @@ async function copy() {
         watcher.on("all", async (event, filePath) => {
             const start = new Date();
             const src = path.relative("./", filePath);
-            const dist = path.join(
-                "build/",
-                src.startsWith("src") ? path.relative("src", src) : src,
-            );
+            const dist = path.join("build/", src.startsWith("src") ? path.relative("src", src) : src);
             switch (event) {
                 case "add":
                 case "change":
@@ -67,9 +64,7 @@ async function copy() {
             }
             const end = new Date();
             const time = end.getTime() - start.getTime();
-            console.info(
-                `[${format(end)}] ${event} '${dist}' after ${time} ms`,
-            );
+            console.info(`[${format(end)}] ${event} '${dist}' after ${time} ms`);
         });
     }
 }

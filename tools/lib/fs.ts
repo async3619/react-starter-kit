@@ -15,16 +15,12 @@ import rimraf from "rimraf";
 
 export const readFile = (file: string) =>
     new Promise((resolve, reject) => {
-        fs.readFile(file, "utf8", (err, data) =>
-            err ? reject(err) : resolve(data),
-        );
+        fs.readFile(file, "utf8", (err, data) => (err ? reject(err) : resolve(data)));
     });
 
 export const writeFile = (file: string, contents: string) =>
     new Promise((resolve, reject) => {
-        fs.writeFile(file, contents, "utf8", err =>
-            err ? reject(err) : resolve(),
-        );
+        fs.writeFile(file, contents, "utf8", err => (err ? reject(err) : resolve()));
     });
 
 export const renameFile = (source: string, target: string) =>
@@ -55,14 +51,9 @@ export const copyFile = (source: string, target: string) =>
         rd.pipe(wr);
     });
 
-export const readDir = (
-    pattern: string,
-    options: IOptions = {},
-): Promise<string[]> => {
+export const readDir = (pattern: string, options: IOptions = {}): Promise<string[]> => {
     return new Promise((resolve, reject) =>
-        glob(pattern, options, (err, result) =>
-            err ? reject(err) : resolve(result),
-        ),
+        glob(pattern, options, (err, result) => (err ? reject(err) : resolve(result))),
     );
 };
 
@@ -104,11 +95,7 @@ export const copyDir = async (source: string, target: string) => {
 };
 
 export const cleanDir = (pattern: string, options?: IOptions) =>
-    new Promise((resolve, reject) =>
-        rimraf(pattern, { glob: options }, err =>
-            err ? reject(err) : resolve(),
-        ),
-    );
+    new Promise((resolve, reject) => rimraf(pattern, { glob: options }, err => (err ? reject(err) : resolve())));
 
 export default {
     readFile,

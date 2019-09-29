@@ -5,10 +5,7 @@ import { HttpLink } from "apollo-link-http";
 import apolloLogger from "apollo-link-logger";
 import gql from "graphql-tag";
 import createCache from "./createCache";
-import {
-    resolvers as clientResolvers,
-    schema as clientSchema,
-} from "../../data/graphql/OnMemoryState/schema";
+import { resolvers as clientResolvers, schema as clientSchema } from "../../data/graphql/OnMemoryState/schema";
 
 export default function createApolloClient() {
     // Restore cache defaults to make the same one in server.js
@@ -18,9 +15,7 @@ export default function createApolloClient() {
         onError(({ graphQLErrors, networkError }) => {
             if (graphQLErrors)
                 graphQLErrors.map(({ message, locations, path }) =>
-                    console.warn(
-                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-                    ),
+                    console.warn(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
                 );
             if (networkError) console.warn(`[Network error]: ${networkError}`);
         }),

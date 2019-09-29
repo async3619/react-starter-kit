@@ -17,10 +17,7 @@ const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//;
 let server: ChildProcess;
 let pending = true;
 const [, serverConfig] = webpackConfig;
-const serverPath = path.join(
-    serverConfig.output.path,
-    serverConfig.output.filename.replace("[name]", "server"),
-);
+const serverPath = path.join(serverConfig.output.path, serverConfig.output.filename.replace("[name]", "server"));
 
 // Launch or restart the Node.js server
 function runServer(): Promise<ChildProcess> {
@@ -29,9 +26,7 @@ function runServer(): Promise<ChildProcess> {
             const time = new Date().toTimeString();
             const match = data.toString("utf8").match(RUNNING_REGEXP);
 
-            process.stdout.write(
-                time.replace(/.*(\d{2}:\d{2}:\d{2}).*/, "[$1] "),
-            );
+            process.stdout.write(time.replace(/.*(\d{2}:\d{2}:\d{2}).*/, "[$1] "));
             process.stdout.write(data);
 
             if (match) {
@@ -54,9 +49,7 @@ function runServer(): Promise<ChildProcess> {
         if (pending) {
             server.once("exit", (code, signal) => {
                 if (pending) {
-                    throw new Error(
-                        `Server terminated unexpectedly with code: ${code} signal: ${signal}`,
-                    );
+                    throw new Error(`Server terminated unexpectedly with code: ${code} signal: ${signal}`);
                 }
             });
         }

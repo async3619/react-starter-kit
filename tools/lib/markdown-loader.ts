@@ -12,10 +12,7 @@ import path from "path";
 import fm from "front-matter";
 import MarkdownIt from "markdown-it";
 
-module.exports = function markdownLoader(
-    this: webpack.loader.LoaderContext,
-    source: string,
-) {
+module.exports = function markdownLoader(this: webpack.loader.LoaderContext, source: string) {
     const md = new MarkdownIt({
         html: true,
         linkify: true,

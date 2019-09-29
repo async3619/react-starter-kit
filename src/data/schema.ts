@@ -10,11 +10,7 @@
 import { DocumentNode } from "graphql";
 import merge from "lodash.merge";
 
-import {
-    schema as NewsSchema,
-    resolvers as NewsResolvers,
-    queries as NewsQueries,
-} from "./graphql/News/schema";
+import { schema as NewsSchema, resolvers as NewsResolvers, queries as NewsQueries } from "./graphql/News/schema";
 
 import {
     schema as DatabaseSchema,
@@ -23,10 +19,7 @@ import {
     queries as DatabaseQueries,
 } from "./graphql/Database/schema";
 
-import {
-    schema as TimestampSchema,
-    resolvers as TimestampResolvers,
-} from "./graphql/Scalar/Timestamp";
+import { schema as TimestampSchema, resolvers as TimestampResolvers } from "./graphql/Scalar/Timestamp";
 
 import {
     schema as OnMemoryStateSchema,

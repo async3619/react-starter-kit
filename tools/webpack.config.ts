@@ -25,17 +25,14 @@ const BUILD_DIR = resolvePath("build");
 
 const isDebug = !process.argv.includes("--release");
 const isVerbose = process.argv.includes("--verbose");
-const isAnalyze =
-    process.argv.includes("--analyze") || process.argv.includes("--analyse");
+const isAnalyze = process.argv.includes("--analyze") || process.argv.includes("--analyse");
 
 const reScript = /\.(ts|tsx|js|jsx|mjs)$/;
 const reGraphql = /\.(graphql|gql)$/;
 const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
-const staticAssetName = isDebug
-    ? "[path][name].[ext]?[hash:8]"
-    : "[hash:8].[ext]";
+const staticAssetName = isDebug ? "[path][name].[ext]?[hash:8]" : "[hash:8].[ext]";
 
 //
 // Common configuration chunk to be used for both
@@ -52,12 +49,9 @@ const config = {
         publicPath: "/assets/",
         pathinfo: isVerbose,
         filename: isDebug ? "[name].js" : "[name].[chunkhash:8].js",
-        chunkFilename: isDebug
-            ? "[name].chunk.js"
-            : "[name].[chunkhash:8].chunk.js",
+        chunkFilename: isDebug ? "[name].chunk.js" : "[name].[chunkhash:8].chunk.js",
         // Point sourcemap entries to original disk location (format as URL on Windows)
-        devtoolModuleFilenameTemplate: (info: any) =>
-            path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
+        devtoolModuleFilenameTemplate: (info: any) => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
     },
 
     module: {
@@ -105,14 +99,10 @@ const config = {
                         "@babel/plugin-syntax-dynamic-import",
                         // Treat React JSX elements as value types and hoist them to the highest scope
                         // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
-                        ...(isDebug
-                            ? []
-                            : ["@babel/transform-react-constant-elements"]),
+                        ...(isDebug ? [] : ["@babel/transform-react-constant-elements"]),
                         // Replaces the React.createElement function with one that is more optimized for production
                         // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-inline-elements
-                        ...(isDebug
-                            ? []
-                            : ["@babel/transform-react-inline-elements"]),
+                        ...(isDebug ? [] : ["@babel/transform-react-inline-elements"]),
                     ],
                 },
             },
@@ -164,9 +154,7 @@ const config = {
                             sourceMap: isDebug,
                             // CSS Modules https://github.com/css-modules/css-modules
                             modules: {
-                                localIdentName: isDebug
-                                    ? "[name]-[local]-[hash:base64:5]"
-                                    : "[hash:base64:5]",
+                                localIdentName: isDebug ? "[name]-[local]-[hash:base64:5]" : "[hash:base64:5]",
                             },
                         },
                     },
@@ -249,15 +237,7 @@ const config = {
             // Return public URL for all assets unless explicitly excluded
             // DO NOT FORGET to update `exclude` list when you adding a new loader
             {
-                exclude: [
-                    reScript,
-                    reStyle,
-                    reImage,
-                    reGraphql,
-                    /\.json$/,
-                    /\.txt$/,
-                    /\.md$/,
-                ],
+                exclude: [reScript, reStyle, reImage, reGraphql, /\.json$/, /\.txt$/, /\.md$/],
                 loader: "file-loader",
                 options: {
                     name: staticAssetName,
@@ -269,9 +249,7 @@ const config = {
                 ? []
                 : [
                       {
-                          test: resolvePath(
-                              "node_modules/react-deep-force-update/lib/index.js",
-                          ),
+                          test: resolvePath("node_modules/react-deep-force-update/lib/index.js"),
                           loader: "null-loader",
                       },
                   ]),
@@ -349,35 +327,20 @@ const clientConfig = {
                 const chunkFileName = `${BUILD_DIR}/chunk-manifest.json`;
                 try {
                     const fileFilter = (file: string) => !file.endsWith(".map");
-                    const addPath = (file: string) =>
-                        manifest.getPublicPath(file);
-                    const chunkFiles = stats.compilation.chunkGroups.reduce(
-                        (acc: any[], c: any) => {
-                            acc[c.name] = [
-                                ...(acc[c.name] || []),
-                                ...c.chunks.reduce(
-                                    (files: any[], cc: any) => [
-                                        ...files,
-                                        ...cc.files
-                                            .filter(fileFilter)
-                                            .map(addPath),
-                                    ],
-                                    [],
-                                ),
-                            ];
-                            return acc;
-                        },
-                        Object.create(null),
-                    );
-                    fs.writeFileSync(
-                        chunkFileName,
-                        JSON.stringify(chunkFiles, null, 2),
-                    );
+                    const addPath = (file: string) => manifest.getPublicPath(file);
+                    const chunkFiles = stats.compilation.chunkGroups.reduce((acc: any[], c: any) => {
+                        acc[c.name] = [
+                            ...(acc[c.name] || []),
+                            ...c.chunks.reduce(
+                                (files: any[], cc: any) => [...files, ...cc.files.filter(fileFilter).map(addPath)],
+                                [],
+                            ),
+                        ];
+                        return acc;
+                    }, Object.create(null));
+                    fs.writeFileSync(chunkFileName, JSON.stringify(chunkFiles, null, 2));
                 } catch (err) {
-                    console.error(
-                        `ERROR: Cannot write ${chunkFileName}: `,
-                        err,
-                    );
+                    console.error(`ERROR: Cannot write ${chunkFileName}: `, err);
                     if (!isDebug) process.exit(1);
                 }
             },
@@ -462,9 +425,7 @@ const serverConfig = {
                                       {
                                           targets: {
                                               // @ts-ignore
-                                              node: pkg.engines.node.match(
-                                                  /(\d+\.?)+/,
-                                              )[0],
+                                              node: pkg.engines.node.match(/(\d+\.?)+/)[0],
                                           },
                                           modules: false,
                                           useBuiltIns: false,
@@ -477,11 +438,7 @@ const serverConfig = {
             }
 
             // Override paths to static assets
-            if (
-                rule.loader === "file-loader" ||
-                rule.loader === "url-loader" ||
-                rule.loader === "svg-url-loader"
-            ) {
+            if (rule.loader === "file-loader" || rule.loader === "url-loader" || rule.loader === "svg-url-loader") {
                 return {
                     ...rule,
                     options: {
