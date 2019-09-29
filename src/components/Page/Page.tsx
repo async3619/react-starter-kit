@@ -7,22 +7,22 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { Container } from 'reactstrap';
+import React from "react";
+import { Container } from "reactstrap";
 
 interface PropTypes {
-  title: string;
-  html: string;
+    title: string;
+    html: string;
 }
 
 const Page = ({ title, html }: PropTypes) => (
-  <Container>
-    <h1>{title}</h1>
-    <div
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
-  </Container>
+    <Container>
+        <h1>{title}</h1>
+        <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: html }}
+        />
+    </Container>
 );
 
 export default Page;

@@ -7,28 +7,28 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import React from "react";
+import { Nav, NavItem, NavLink } from "reactstrap";
 
 const Navigation = (props: { createGotoProps: Function }) => {
-  const { createGotoProps } = props;
+    const { createGotoProps } = props;
 
-  return (
-    <Nav className="ml-auto" navbar>
-      <NavItem>
-        <NavLink {...createGotoProps('/about')}>About</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink {...createGotoProps('/contact')}>Contact</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink {...createGotoProps('/login')}>Log in</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink {...createGotoProps('/register')}>Sign up</NavLink>
-      </NavItem>
-    </Nav>
-  );
+    return (
+        <Nav className="ml-auto" navbar>
+            <NavItem>
+                <NavLink {...createGotoProps("/about")}>About</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink {...createGotoProps("/contact")}>Contact</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink {...createGotoProps("/login")}>Log in</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink {...createGotoProps("/register")}>Sign up</NavLink>
+            </NavItem>
+        </Nav>
+    );
 };
 
 export default Navigation;

@@ -7,12 +7,12 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import webpackConfig from './webpack.config';
-import runWebpack from './lib/runWebpack';
+import webpackConfig from "./webpack.config";
+import runWebpack from "./lib/runWebpack";
 
 /**
  * Creates application bundles from the source files.
  */
 export default function bundle() {
-  return runWebpack(webpackConfig, webpackConfig[0].stats);
+    return runWebpack(webpackConfig, webpackConfig[0].stats);
 }

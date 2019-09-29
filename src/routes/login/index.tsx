@@ -7,22 +7,22 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Layout from '../../components/Layout';
-import Login from './Login';
+import React from "react";
+import Layout from "../../components/Layout";
+import Login from "./Login";
 
-const title = 'Log In';
+const title = "Log In";
 
 function action() {
-  return {
-    chunks: ['login'],
-    title,
-    component: (
-      <Layout>
-        <Login title={title} />
-      </Layout>
-    ),
-  };
+    return {
+        chunks: ["login"],
+        title,
+        component: (
+            <Layout>
+                <Login title={title} />
+            </Layout>
+        ),
+    };
 }
 
 export default action;

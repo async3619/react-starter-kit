@@ -1,11 +1,11 @@
 query HomeNews {
-  reactjsGetAllNews {
-    title
-    link
-    content
-  }
+    reactjsGetAllNews {
+        title
+        link
+        content
+    }
 
-  networkStatus @client {
-    isConnected
-  }
+    networkStatus @client {
+        isConnected
+    }
 }

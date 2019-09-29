@@ -7,18 +7,18 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { FunctionComponent } from 'react';
-import { Container } from 'reactstrap';
+import React, { FunctionComponent } from "react";
+import { Container } from "reactstrap";
 
 type PropTypes = {
-  title: string;
+    title: string;
 };
 
 const NotFound: FunctionComponent<PropTypes> = props => (
-  <Container>
-    <h1>{props.title}</h1>
-    <p>Sorry, the page you were trying to view does not exist.</p>
-  </Container>
+    <Container>
+        <h1>{props.title}</h1>
+        <p>Sorry, the page you were trying to view does not exist.</p>
+    </Container>
 );
 
 export default NotFound;

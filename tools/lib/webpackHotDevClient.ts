@@ -7,50 +7,50 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import hotClient from 'webpack-hot-middleware/client';
-import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint';
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
+import hotClient from "webpack-hot-middleware/client";
+import launchEditorEndpoint from "react-dev-utils/launchEditorEndpoint";
+import formatWebpackMessages from "react-dev-utils/formatWebpackMessages";
 import {
-  setEditorHandler,
-  reportBuildError,
-  dismissBuildError,
-  startReportingRuntimeErrors,
-  stopReportingRuntimeErrors,
-} from 'react-error-overlay';
+    setEditorHandler,
+    reportBuildError,
+    dismissBuildError,
+    startReportingRuntimeErrors,
+    stopReportingRuntimeErrors,
+} from "react-error-overlay";
 
 setEditorHandler((errorLocation: any) => {
-  const fileName = encodeURIComponent(errorLocation.fileName);
-  const lineNumber = encodeURIComponent(errorLocation.lineNumber || 1);
-  fetch(
-    // Keep in sync with react-dev-utils/errorOverlayMiddleware
-    `${launchEditorEndpoint}?fileName=${fileName}&lineNumber=${lineNumber}`,
-  );
+    const fileName = encodeURIComponent(errorLocation.fileName);
+    const lineNumber = encodeURIComponent(errorLocation.lineNumber || 1);
+    fetch(
+        // Keep in sync with react-dev-utils/errorOverlayMiddleware
+        `${launchEditorEndpoint}?fileName=${fileName}&lineNumber=${lineNumber}`,
+    );
 });
 
 hotClient.useCustomOverlay({
-  showProblems(type: any, errors: any) {
-    // @ts-ignore
-    const formatted = formatWebpackMessages({
-      errors,
-      warnings: [],
-    });
+    showProblems(type: any, errors: any) {
+        // @ts-ignore
+        const formatted = formatWebpackMessages({
+            errors,
+            warnings: [],
+        });
 
-    reportBuildError(formatted.errors[0]);
-  },
-  clear() {
-    dismissBuildError();
-  },
+        reportBuildError(formatted.errors[0]);
+    },
+    clear() {
+        dismissBuildError();
+    },
 });
 
 hotClient.setOptionsAndConnect({
-  name: 'client',
-  reload: true,
+    name: "client",
+    reload: true,
 });
 
 startReportingRuntimeErrors({
-  filename: '/assets/client.js',
+    filename: "/assets/client.js",
 });
 
 if (module.hot) {
-  module.hot.dispose(stopReportingRuntimeErrors);
+    module.hot.dispose(stopReportingRuntimeErrors);
 }

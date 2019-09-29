@@ -7,18 +7,18 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import { Container } from 'reactstrap';
+import React from "react";
+import { Container } from "reactstrap";
 
 type PropTypes = {
-  title: string;
+    title: string;
 };
 
 const Register = (props: PropTypes) => (
-  <Container>
-    <h1>{props.title}</h1>
-    <p>...</p>
-  </Container>
+    <Container>
+        <h1>{props.title}</h1>
+        <p>...</p>
+    </Container>
 );
 
 export default Register;

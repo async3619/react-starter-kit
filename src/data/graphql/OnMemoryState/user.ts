@@ -1,5 +1,5 @@
 export const schema = [
-  `
+    `
   type User {
     id: String!
   }
@@ -7,7 +7,7 @@ export const schema = [
 ];
 
 export const queries = [
-  `
+    `
   user: User
 `,
 ];

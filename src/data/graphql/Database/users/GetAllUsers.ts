@@ -1,7 +1,7 @@
-import { User, UserClaim, UserLogin, UserProfile } from '../../../models';
+import { User, UserClaim, UserLogin, UserProfile } from "../../../models";
 
 export const schema = [
-  `
+    `
   # A user stored in the local database
   type DatabaseUser {
     id: String
@@ -45,7 +45,7 @@ export const schema = [
 ];
 
 export const queries = [
-  `
+    `
   # Retrieves all users stored in the local database
   databaseGetAllUsers: [DatabaseUser]
 
@@ -58,27 +58,27 @@ export const queries = [
 ];
 
 export const resolvers = {
-  RootQuery: {
-    async databaseGetAllUsers() {
-      const users = await User.findAll({
-        include: [
-          { model: UserLogin, as: 'logins' },
-          { model: UserClaim, as: 'claims' },
-          { model: UserProfile, as: 'profile' },
-        ],
-      });
-      return users;
+    RootQuery: {
+        async databaseGetAllUsers() {
+            const users = await User.findAll({
+                include: [
+                    { model: UserLogin, as: "logins" },
+                    { model: UserClaim, as: "claims" },
+                    { model: UserProfile, as: "profile" },
+                ],
+            });
+            return users;
+        },
+        async databaseGetUser(parent: any, { email }: any) {
+            const user = await User.findOne({
+                where: { email },
+                include: [
+                    { model: UserLogin, as: "logins" },
+                    { model: UserClaim, as: "claims" },
+                    { model: UserProfile, as: "profile" },
+                ],
+            });
+            return user;
+        },
     },
-    async databaseGetUser(parent: any, { email }: any) {
-      const user = await User.findOne({
-        where: { email },
-        include: [
-          { model: UserLogin, as: 'logins' },
-          { model: UserClaim, as: 'claims' },
-          { model: UserProfile, as: 'profile' },
-        ],
-      });
-      return user;
-    },
-  },
 };

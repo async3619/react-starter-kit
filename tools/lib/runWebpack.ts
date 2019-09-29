@@ -1,21 +1,21 @@
-import webpack from 'webpack';
+import webpack from "webpack";
 
 export default function runWebpack(
-  config: any,
-  statsInfo: webpack.Options.Stats,
+    config: any,
+    statsInfo: webpack.Options.Stats,
 ) {
-  return new Promise((resolve, reject) => {
-    webpack(config).run((err, stats) => {
-      if (err) {
-        return reject(err);
-      }
+    return new Promise((resolve, reject) => {
+        webpack(config).run((err, stats) => {
+            if (err) {
+                return reject(err);
+            }
 
-      console.info(stats.toString(statsInfo));
-      if (stats.hasErrors()) {
-        return reject(new Error('Webpack compilation errors'));
-      }
+            console.info(stats.toString(statsInfo));
+            if (stats.hasErrors()) {
+                return reject(new Error("Webpack compilation errors"));
+            }
 
-      return resolve();
+            return resolve();
+        });
     });
-  });
 }

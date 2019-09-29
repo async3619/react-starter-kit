@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import { createBrowserHistory, History } from 'history';
+import { createBrowserHistory, History } from "history";
 
 const history = process.env.BROWSER && createBrowserHistory();
 

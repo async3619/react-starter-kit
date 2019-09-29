@@ -7,35 +7,35 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import { DocumentNode } from 'graphql';
-import merge from 'lodash.merge';
+import { DocumentNode } from "graphql";
+import merge from "lodash.merge";
 
 import {
-  schema as NewsSchema,
-  resolvers as NewsResolvers,
-  queries as NewsQueries,
-} from './graphql/News/schema';
+    schema as NewsSchema,
+    resolvers as NewsResolvers,
+    queries as NewsQueries,
+} from "./graphql/News/schema";
 
 import {
-  schema as DatabaseSchema,
-  resolvers as DatabaseResolvers,
-  mutations as DatabaseMutations,
-  queries as DatabaseQueries,
-} from './graphql/Database/schema';
+    schema as DatabaseSchema,
+    resolvers as DatabaseResolvers,
+    mutations as DatabaseMutations,
+    queries as DatabaseQueries,
+} from "./graphql/Database/schema";
 
 import {
-  schema as TimestampSchema,
-  resolvers as TimestampResolvers,
-} from './graphql/Scalar/Timestamp';
+    schema as TimestampSchema,
+    resolvers as TimestampResolvers,
+} from "./graphql/Scalar/Timestamp";
 
 import {
-  schema as OnMemoryStateSchema,
-  queries as OnMemoryStateQueries,
-  mutations as OnMemoryStateMutations,
-} from './graphql/OnMemoryState/schema';
+    schema as OnMemoryStateSchema,
+    queries as OnMemoryStateQueries,
+    mutations as OnMemoryStateMutations,
+} from "./graphql/OnMemoryState/schema";
 
 const RootQuery = [
-  `
+    `
   
   # # React-Starter-Kit Querying API
   # ### This GraphQL schema was built with [Apollo GraphQL-Tools](https://github.com/apollographql/graphql-tools)
@@ -55,7 +55,7 @@ const RootQuery = [
 ];
 
 const Mutation = [
-  `
+    `
   # # React-Starter-Kit Mutating API
   # ### This GraphQL schema was built with [Apollo GraphQL-Tools](https://github.com/apollographql/graphql-tools)
   # _Build, mock, and stitch a GraphQL schema using the schema language_
@@ -73,7 +73,7 @@ const Mutation = [
 ];
 
 const SchemaDefinition = [
-  `
+    `
   
   schema {
     query: RootQuery
@@ -87,18 +87,18 @@ const SchemaDefinition = [
 const resolvers = merge(NewsResolvers, DatabaseResolvers, TimestampResolvers);
 
 const schema = [
-  ...SchemaDefinition,
-  ...TimestampSchema,
-  ...RootQuery,
-  ...Mutation,
+    ...SchemaDefinition,
+    ...TimestampSchema,
+    ...RootQuery,
+    ...Mutation,
 
-  ...NewsSchema,
-  ...DatabaseSchema,
-  ...OnMemoryStateSchema,
+    ...NewsSchema,
+    ...DatabaseSchema,
+    ...OnMemoryStateSchema,
 ];
 
 export default {
-  typeDefs: (schema as any) as DocumentNode[],
-  resolvers,
-  // ...(__DEV__ ? { log: e => console.error(e.stack) } : {}),
+    typeDefs: (schema as any) as DocumentNode[],
+    resolvers,
+    // ...(__DEV__ ? { log: e => console.error(e.stack) } : {}),
 };

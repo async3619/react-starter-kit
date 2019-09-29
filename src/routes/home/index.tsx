@@ -7,20 +7,20 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Home from './Home';
-import Layout from '../../components/Layout';
+import React from "react";
+import Home from "./Home";
+import Layout from "../../components/Layout";
 
 async function action() {
-  return {
-    title: 'React Starter Kit',
-    chunks: ['home'],
-    component: (
-      <Layout>
-        <Home />
-      </Layout>
-    ),
-  };
+    return {
+        title: "React Starter Kit",
+        chunks: ["home"],
+        component: (
+            <Layout>
+                <Home />
+            </Layout>
+        ),
+    };
 }
 
 export default action;

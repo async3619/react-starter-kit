@@ -1,14 +1,14 @@
-import merge from 'lodash.merge';
+import merge from "lodash.merge";
 
 import {
-  resolvers as networkStatusResolvers,
-  defaults as networkStatusDefaults,
-  schema as networkStatusSchema,
-  queries as networkStatusQuery,
-  mutations as networkStatusMutation,
-} from './networkStatus';
+    resolvers as networkStatusResolvers,
+    defaults as networkStatusDefaults,
+    schema as networkStatusSchema,
+    queries as networkStatusQuery,
+    mutations as networkStatusMutation,
+} from "./networkStatus";
 
-import { schema as userSchema, queries as userQueries } from './user';
+import { schema as userSchema, queries as userQueries } from "./user";
 
 // Used by both GraphQL Server and Apollo Client
 export const schema = [...userSchema, ...networkStatusSchema];

@@ -1,11 +1,11 @@
-import merge from 'lodash.merge';
+import merge from "lodash.merge";
 
 /** * Queries ** */
 import {
-  schema as GetAllReactJSNews,
-  queries as GetAllReactJSNewsQueries,
-  resolvers as GetAllReactJSNewsResolver,
-} from './reactjsnews.com/GetAllReactJSNews';
+    schema as GetAllReactJSNews,
+    queries as GetAllReactJSNewsQueries,
+    resolvers as GetAllReactJSNewsResolver,
+} from "./reactjsnews.com/GetAllReactJSNews";
 
 export const schema = [...GetAllReactJSNews];
 

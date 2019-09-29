@@ -1,7 +1,7 @@
-import 'universal-router';
+import "universal-router";
 
-declare module 'universal-router' {
-  interface Route<C extends Context = any, R = any> {
-    load?: () => Promise<any>;
-  }
+declare module "universal-router" {
+    interface Route<C extends Context = any, R = any> {
+        load?: () => Promise<any>;
+    }
 }
