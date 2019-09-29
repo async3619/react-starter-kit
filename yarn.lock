@@ -1385,13 +1385,6 @@
   resolved "https://registry.yarnpkg.com/@types/parse-glob/-/parse-glob-3.0.27-alpha.tgz#71e27e542d3146ee53a6a1d3923eaf8386134507"
   integrity sha1-ceJ+VC0xRu5TpqHTkj6vg4YTRQc=
 
-"@types/passport@^0.4.7":
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/@types/passport/-/passport-0.4.7.tgz#2b7f29bf61df91cf77023b3777e940b613d4b4d8"
-  integrity sha512-EePlxNYx5tf3n0yjdPXX0/zDOv0UCwjMyQo4UkWGlhHteNDItAj7TfDdLttSThVMKQz3uCW7lsGzMuml0f8g9Q==
-  dependencies:
-    "@types/express" "*"
-
 "@types/postcss-calc@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@types/postcss-calc/-/postcss-calc-7.0.0.tgz#831100871b828e7c984f39b0f250d68fc0b3d367"
@@ -1465,11 +1458,6 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/serialize-javascript@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@types/serialize-javascript/-/serialize-javascript-1.5.0.tgz#bdd334cfbb4fc0eca1fc608da37ad733c86381eb"
-  integrity sha512-WxnnhYOtVJnDFznZPVdbW3NmUJXVyrdQtiq7/vUNg55fVI1B+BP+xp/4dgwIlQXaejbH8gCRu2txtu6LREzK8g==
-
 "@types/serve-static@*":
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.2.tgz#f5ac4d7a6420a99a6a45af4719f4dcd8cd907a48"
@@ -1487,13 +1475,6 @@
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@types/source-map-support/-/source-map-support-0.5.0.tgz#40f47e68bc0bdf54d19dddad4550f521cdb9968c"
   integrity sha512-OrnAz5K5dXDgMdeRRoXIjDAvkodQ9ESvVJCyzrhzUJKmCkXgmYx/KLUBcVFe5eS4FiohfcY7YPxsdkmSwJz9wA==
-  dependencies:
-    "@types/node" "*"
-
-"@types/sqlite3@^3.1.5":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@types/sqlite3/-/sqlite3-3.1.5.tgz#c9bbc94b8e8ed0654e1f8bc98716aba6030e9533"
-  integrity sha512-upsrd1zEYMa4Y+prurQ+vpo5SN63BUF6tOjeTv3ziF+9W9PHVh4/S5cy0qAqkHvmOEm/AZhEKd7V/0bR2udmFw==
   dependencies:
     "@types/node" "*"
 
