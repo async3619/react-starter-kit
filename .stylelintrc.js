@@ -21,6 +21,8 @@ module.exports = {
     ],
 
     rules: {
+        indentation: 4,
+
         "property-no-unknown": [
             true,
             {
@@ -45,7 +47,7 @@ module.exports = {
         ],
 
         // Opinionated rule, you can disable it if you want
-        "string-quotes": "single",
+        "string-quotes": "double",
 
         // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
         "order/order": [
