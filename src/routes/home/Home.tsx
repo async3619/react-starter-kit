@@ -7,66 +7,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import useStyles from "isomorphic-style-loader/useStyles";
 import React from "react";
-import { Container } from "reactstrap";
-import { withHomeNews } from "../../__generated__/dataBinders";
-import { useNotif } from "../../components/Notification";
-import s from "./Home.css";
 
-const Home = withHomeNews<{}>()(props => {
-    useStyles(s);
-    const { addNotification } = useNotif();
+import withStyles from "isomorphic-style-loader/withStyles";
 
-    const {
-        loading,
-        reactjsGetAllNews,
-        networkStatus: { isConnected },
-    } = props.data!;
+import s from "./Home.scss";
 
-    return (
-        <Container>
-            <button
-                type="button"
-                onClick={() =>
-                    addNotification({
-                        message: "Notification from Home.js",
-                    })
-                }
-            >
-                Notification
-            </button>
-            <p className={s.networkStatusMessage}>
-                {isConnected ? "Online" : "Offline"}
-            </p>
-            <button
-                className="float-left"
-                type="button"
-                onClick={() =>
-                    addNotification({
-                        message: "Notification from Home.js",
-                    })
-                }
-            >
-                Notification
-            </button>
-            <h1>React.js News</h1>
-            {loading || !reactjsGetAllNews
-                ? "Loading..."
-                : reactjsGetAllNews.map(item => (
-                      <article key={item.link} className={s.newsItem}>
-                          <h1 className={s.newsTitle}>
-                              <a href={item.link}>{item.title}</a>
-                          </h1>
-                          <div
-                              className={s.newsDesc}
-                              // eslint-disable-next-line react/no-danger
-                              dangerouslySetInnerHTML={{ __html: item.content }}
-                          />
-                      </article>
-                  ))}
-        </Container>
-    );
-});
+class Home extends React.Component {
+    public render() {
+        return <div className={s.root}>Hello World from React Starter Kit!</div>;
+    }
+}
 
-export default Home;
+export default withStyles(s)(Home);

@@ -11,7 +11,7 @@
 // https://prettier.io/docs/en/configuration.html
 module.exports = {
     tabWidth: 4,
-    printWidth: 80,
+    printWidth: 120,
     singleQuote: false,
     trailingComma: 'all',
 };

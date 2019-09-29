@@ -7,29 +7,20 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import theme from "!isomorphic-style-loader!css-loader?modules=global!sass-loader!../theme.scss"; // eslint-disable-line import/no-unresolved
-import animateStyle from "animate.css";
-import useStyles from "isomorphic-style-loader/useStyles";
-import React, { FunctionComponent } from "react";
-import ReactNotification from "react-notifications-component";
-import Feedback from "../Feedback";
-import Footer from "../Footer";
-import Header from "../Header";
-import { notifStyles, useNotif } from "../Notification";
-import s from "./Layout.css";
+import React from "react";
+import withStyles from "isomorphic-style-loader/withStyles";
 
-const Layout: FunctionComponent<{}> = ({ children }) => {
-    useStyles(theme, animateStyle, ...notifStyles, s);
-    const { notifContainerRef } = useNotif();
-    return (
-        <div>
-            <ReactNotification ref={notifContainerRef} />
-            <Header />
-            {children}
-            <Feedback />
-            <Footer />
-        </div>
-    );
-};
+import s from "./Layout.scss";
 
-export default Layout;
+interface Props {
+    children: React.ReactNode;
+}
+
+class Layout extends React.Component<Props> {
+    public render() {
+        const { children } = this.props;
+
+        return <div>{children}</div>;
+    }
+}
+export default withStyles(s)(Layout);

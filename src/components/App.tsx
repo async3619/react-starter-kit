@@ -10,6 +10,7 @@
 import React, { ReactNode } from "react";
 import { ApolloProvider } from "react-apollo";
 import StyleContext from "isomorphic-style-loader/StyleContext";
+
 import AppContext, { AppContextTypes } from "../context";
 
 interface Props {
@@ -24,9 +25,7 @@ const App = ({ client, insertCss, context, children }: Props) => (
     // please do that inside the Layout component.
     <ApolloProvider client={client}>
         <AppContext.Provider value={context}>
-            <StyleContext.Provider value={{ insertCss }}>
-                {children}
-            </StyleContext.Provider>
+            <StyleContext.Provider value={{ insertCss }}>{children}</StyleContext.Provider>
         </AppContext.Provider>
     </ApolloProvider>
 );

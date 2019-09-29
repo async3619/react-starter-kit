@@ -27,14 +27,7 @@ passport.use(
             clientID: config.auth.facebook.id,
             clientSecret: config.auth.facebook.secret,
             callbackURL: "/login/facebook/return",
-            profileFields: [
-                "displayName",
-                "name",
-                "email",
-                "link",
-                "locale",
-                "timezone",
-            ],
+            profileFields: ["displayName", "name", "email", "link", "locale", "timezone"],
             passReqToCallback: true,
         },
         (req, accessToken, refreshToken, profile, done) => {
@@ -57,9 +50,7 @@ passport.use(
                                 id: req.user.id,
                                 email: profile._json.email,
                                 logins: [{ name: loginName, key: profile.id }],
-                                claims: [
-                                    { type: claimType, value: profile.id },
-                                ],
+                                claims: [{ type: claimType, value: profile.id }],
                                 profile: {
                                     displayName: profile.displayName,
                                     gender: profile._json.gender,
@@ -111,12 +102,8 @@ passport.use(
                                 {
                                     email: profile._json.email,
                                     emailConfirmed: true,
-                                    logins: [
-                                        { name: loginName, key: profile.id },
-                                    ],
-                                    claims: [
-                                        { type: claimType, value: accessToken },
-                                    ],
+                                    logins: [{ name: loginName, key: profile.id }],
+                                    claims: [{ type: claimType, value: accessToken }],
                                     profile: {
                                         displayName: profile.displayName,
                                         gender: profile._json.gender,

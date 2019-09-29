@@ -80,9 +80,7 @@ async function onLocationChange(location: Location, action?: any) {
             return;
         }
 
-        const renderReactApp = isInitialRender
-            ? ReactDOM.hydrate
-            : ReactDOM.render;
+        const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
         appInstance = renderReactApp(
             <App context={context} client={apolloClient} insertCss={insertCss}>
                 {route.component}
@@ -92,10 +90,7 @@ async function onLocationChange(location: Location, action?: any) {
                 if (isInitialRender) {
                     // Switch off the native scroll restoration behavior and handle it manually
                     // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
-                    if (
-                        window.history &&
-                        "scrollRestoration" in window.history
-                    ) {
+                    if (window.history && "scrollRestoration" in window.history) {
                         window.history.scrollRestoration = "manual";
                     }
 
@@ -125,9 +120,7 @@ async function onLocationChange(location: Location, action?: any) {
                     if (targetHash) {
                         const target = document.getElementById(targetHash);
                         if (target) {
-                            scrollY =
-                                window.pageYOffset +
-                                target.getBoundingClientRect().top;
+                            scrollY = window.pageYOffset + target.getBoundingClientRect().top;
                         }
                     }
                 }

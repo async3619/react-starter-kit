@@ -8,7 +8,6 @@
  */
 
 import React from "react";
-import { Container } from "reactstrap";
 
 interface PropTypes {
     title: string;
@@ -16,13 +15,13 @@ interface PropTypes {
 }
 
 const Page = ({ title, html }: PropTypes) => (
-    <Container>
+    <div>
         <h1>{title}</h1>
         <div
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: html }}
         />
-    </Container>
+    </div>
 );
 
 export default Page;

@@ -7,6 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-:global(#app) {
-  overflow: hidden;
+@import '../../components/variables';
+
+.root {
+  margin: 0 auto;
+  padding: 0 0 40px;
+  max-width: $max-content-width;
 }

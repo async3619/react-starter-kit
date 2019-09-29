@@ -7,16 +7,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-export function updateTag(
-    tagName: string,
-    keyName: string,
-    keyValue: string,
-    attrName: string,
-    attrValue: string,
-) {
-    const node = document.head.querySelector(
-        `${tagName}[${keyName}="${keyValue}"]`,
-    );
+export function updateTag(tagName: string, keyName: string, keyValue: string, attrName: string, attrValue: string) {
+    const node = document.head.querySelector(`${tagName}[${keyName}="${keyValue}"]`);
     if (node && node.getAttribute(attrName) === attrValue) return;
 
     // Remove and create a new tag in order to make it work with bookmarks in Safari

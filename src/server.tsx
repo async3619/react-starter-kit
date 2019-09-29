@@ -23,7 +23,7 @@ import createApolloClient from "./core/createApolloClient/createApolloClient.ser
 import App from "./components/App";
 import Html from "./components/Html";
 import { ErrorPageWithoutStyle } from "./routes/error/ErrorPage";
-import errorPageStyle from "./routes/error/ErrorPage.css";
+import errorPageStyle from "./routes/error/ErrorPage.scss";
 import passport from "./passport";
 import router from "./router";
 import models from "./data/models";
@@ -237,9 +237,7 @@ const promise = models.sync().catch((err: Error) => console.error(err.stack));
 if (!module.hot) {
     promise.then(() => {
         app.listen(config.port, () => {
-            console.info(
-                `The server is running at http://localhost:${config.port}/`,
-            );
+            console.info(`The server is running at http://localhost:${config.port}/`);
         });
     });
 }

@@ -25,7 +25,6 @@ declare module "apollo-link-logger";
 declare module "webpack-hot-middleware/client";
 declare module "react-dev-utils/launchEditorEndpoint";
 declare module "react-dev-utils/errorOverlayMiddleware";
-declare module "react-notifications-component";
 declare module "react-error-overlay";
 declare module "react-test-renderer";
 declare module "isomorphic-style-loader/withStyles" {
@@ -45,19 +44,14 @@ declare module "isomorphic-style-loader/withStyles" {
 declare module "isomorphic-style-loader/useStyles" {
     /* eslint no-underscore-dangle:0 */
     /* eslint no-undef:0 */
-    const _default: (
-        s1: string,
-        s2?: string,
-        s3?: string,
-        s4?: string,
-        s5?: string,
-    ) => void;
+    const _default: (s1: string, s2?: string, s3?: string, s4?: string, s5?: string) => void;
     /* eslint import/export:0 */
     export default _default;
 }
 
 // Declare non-ts modules to be loaded by webpack loaders
 declare module "*.css";
+declare module "*.scss";
 declare module "*.md";
 declare module "*.png";
 declare module "*.graphql" {

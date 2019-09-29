@@ -8,6 +8,7 @@
  */
 
 import React, { ReactNode } from "react";
+
 import history from "../../history";
 
 function isLeftClickEvent(event: MouseEvent) {

@@ -26,24 +26,14 @@ interface PropTypes {
     children: string;
 }
 
-const Html = ({
-    title,
-    description,
-    styles = [],
-    scripts = [],
-    app,
-    children,
-}: PropTypes) => (
+const Html = ({ title, description, styles = [], scripts = [], app, children }: PropTypes) => (
     <html className="no-js" lang="en">
         <head>
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
             <title>{title}</title>
             <meta name="description" content={description} />
-            <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1"
-            />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             {scripts.map(script => (
                 <link key={script} rel="preload" href={script} as="script" />
             ))}
@@ -51,11 +41,7 @@ const Html = ({
             <link rel="manifest" href="/site.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png" />
             {styles.map(style => (
-                <style
-                    key={style.id}
-                    id={style.id}
-                    dangerouslySetInnerHTML={{ __html: style.cssText }}
-                />
+                <style key={style.id} id={style.id} dangerouslySetInnerHTML={{ __html: style.cssText }} />
             ))}
         </head>
         <body>
@@ -81,11 +67,7 @@ const Html = ({
             )}
 
             {config.analytics.googleTrackingId && (
-                <script
-                    src="https://www.google-analytics.com/analytics.js"
-                    async
-                    defer
-                />
+                <script src="https://www.google-analytics.com/analytics.js" async defer />
             )}
         </body>
     </html>
