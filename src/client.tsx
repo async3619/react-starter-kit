@@ -12,16 +12,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import deepForceUpdate from "react-deep-force-update";
 import queryString from "query-string";
-import gql from "graphql-tag";
 import { createPath, Location } from "history";
 import App from "./components/App";
 import history from "./history";
 import { updateMeta } from "./DOMUtils";
-import createApolloClient from "./core/createApolloClient/createApolloClient.client";
 import router from "./router";
 import { AppContextTypes } from "./context";
-
-const apolloClient = createApolloClient();
 
 // Enables critical path CSS rendering
 // https://github.com/kriasoft/isomorphic-style-loader
@@ -82,7 +78,7 @@ async function onLocationChange(location: Location, action?: any) {
 
         const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
         appInstance = renderReactApp(
-            <App context={context} client={apolloClient} insertCss={insertCss}>
+            <App context={context} insertCss={insertCss}>
                 {route.component}
             </App>,
             container,
@@ -169,24 +165,3 @@ if (module.hot) {
         onLocationChange(currentLocation);
     });
 }
-
-// This is a demonstration of how to mutate the client state of apollo-link-state.
-// If you don't need the networkStatus, please erase below lines.
-function onNetworkStatusChange() {
-    apolloClient.mutate({
-        mutation: gql`
-            mutation updateNetworkStatus($isConnected: Boolean) {
-                updateNetworkStatus(isConnected: $isConnected) @client {
-                    isConnected
-                }
-            }
-        `,
-        variables: {
-            isConnected: navigator.onLine,
-        },
-    });
-}
-
-window.addEventListener("online", onNetworkStatusChange);
-window.addEventListener("offline", onNetworkStatusChange);
-onNetworkStatusChange();
