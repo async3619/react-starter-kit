@@ -43,7 +43,7 @@ function runServer(): Promise<ChildProcess> {
         }
 
         server = cp.spawn("node", [serverPath], {
-            env: Object.assign({ NODE_ENV: "development" }, process.env),
+            env: { NODE_ENV: "development", ...process.env },
         });
 
         if (pending) {

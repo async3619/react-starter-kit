@@ -91,7 +91,7 @@ async function start() {
 
     // https://github.com/webpack/webpack-dev-middleware
     server.use(
-        webpackDevMiddleware(clientCompiler, {
+        webpackDevMiddleware(clientCompiler as any, {
             publicPath: clientConfig.output.publicPath,
             logLevel: "silent",
             watchOptions,
@@ -99,7 +99,7 @@ async function start() {
     );
 
     // https://github.com/glenjamin/webpack-hot-middleware
-    server.use(webpackHotMiddleware(clientCompiler, { log: false }));
+    server.use(webpackHotMiddleware(clientCompiler as any, { log: false }));
 
     let app: Application;
     let hot: any;

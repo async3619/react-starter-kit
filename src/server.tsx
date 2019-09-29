@@ -113,6 +113,7 @@ app.get("*", async (req, res, next) => {
             apiUrl: config.api.clientUrl,
         };
 
+        // eslint-disable-next-line react/jsx-props-no-spreading
         const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
         res.status(route.status || 200);
         res.send(`<!doctype html>${html}`);
