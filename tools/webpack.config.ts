@@ -86,6 +86,7 @@ const config = {
                     ],
                     plugins: [
                         // Experimental ECMAScript proposals
+                        ["@babel/plugin-proposal-decorators", { legacy: true }],
                         "@babel/plugin-proposal-class-properties",
                         "@babel/plugin-syntax-dynamic-import",
                         // Treat React JSX elements as value types and hoist them to the highest scope

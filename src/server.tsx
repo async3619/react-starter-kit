@@ -1,9 +1,11 @@
+import "reflect-metadata";
+import React from "react";
+import ReactDOM from "react-dom/server";
+import { renderToStringWithData } from "react-apollo";
 import path from "path";
 import express, { NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import React from "react";
-import ReactDOM from "react-dom/server";
 import PrettyError from "pretty-error";
 import { AppContextTypes } from "./context";
 import App from "./components/App";
@@ -15,6 +17,11 @@ import router from "./router";
 // @ts-ignore
 import chunks from "./chunk-manifest.json"; // eslint-disable-line import/no-unresolved
 import config from "./config";
+
+import configureApolloServer, { generateGraphQLContext } from "./data/configureApolloServer";
+import schema from "./data/schema";
+
+import createApolloClient from "./utils/createApolloClient.server";
 
 process.on("unhandledRejection", (reason, p) => {
     console.error("Unhandled Rejection at:", p, "reason:", reason);
@@ -46,10 +53,12 @@ app.use(express.static(path.resolve(__dirname, "public")));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+configureApolloServer(app);
 
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
+
 app.get("*", async (req, res, next) => {
     try {
         const css = new Set();
@@ -61,12 +70,22 @@ app.get("*", async (req, res, next) => {
             styles.forEach(style => css.add(style._getCss()));
         };
 
+        const apolloClient = createApolloClient(
+            {
+                schema,
+                // This is a context consumed in GraphQL Resolvers
+                context: generateGraphQLContext(),
+            },
+            {},
+        );
+
         // Global (context) variables that can be easily accessed from any React component
         // https://facebook.github.io/react/docs/context.html
         const context: AppContextTypes = {
             // The twins below are wild, be careful!
             pathname: req.path,
             query: req.query,
+            client: apolloClient,
         };
 
         const route = await router.resolve(context);
@@ -80,11 +99,12 @@ app.get("*", async (req, res, next) => {
 
         const data = { ...route };
         const rootComponent = (
-            <App context={context} insertCss={insertCss}>
+            <App context={context} client={apolloClient} insertCss={insertCss}>
                 {route.component}
             </App>
         );
-        data.children = await ReactDOM.renderToString(rootComponent);
+
+        data.children = await renderToStringWithData(rootComponent);
         data.styles = [{ id: "css", cssText: [...css].join("") }];
 
         const scripts = new Set();
@@ -95,6 +115,7 @@ app.get("*", async (req, res, next) => {
                 throw new Error(`Chunk with name '${chunk}' cannot be found`);
             }
         };
+
         addChunk("client");
         if (route.chunk) addChunk(route.chunk);
         if (route.chunks) route.chunks.forEach(addChunk);
@@ -102,6 +123,7 @@ app.get("*", async (req, res, next) => {
         data.scripts = Array.from(scripts);
         data.app = {
             apiUrl: config.api.clientUrl,
+            cache: apolloClient.extract(),
         };
 
         // eslint-disable-next-line react/jsx-props-no-spreading

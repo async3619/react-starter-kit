@@ -10,6 +10,8 @@ import { updateMeta } from "./DOMUtils";
 import router from "./router";
 import { AppContextTypes } from "./context";
 
+import createApolloClient from "./utils/createApolloClient.client";
+
 // Enables critical path CSS rendering
 // https://github.com/kriasoft/isomorphic-style-loader
 const insertCss = (...styles: any[]) => {
@@ -22,7 +24,8 @@ const insertCss = (...styles: any[]) => {
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
-const context: AppContextTypes = { pathname: "" };
+const apolloClient = createApolloClient();
+const context: AppContextTypes = { pathname: "", client: apolloClient };
 
 const container = document.getElementById("app");
 let currentLocation = history.location;
@@ -69,7 +72,7 @@ async function onLocationChange(location: Location, action?: any) {
 
         const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
         appInstance = renderReactApp(
-            <App context={context} insertCss={insertCss}>
+            <App context={context} client={apolloClient} insertCss={insertCss}>
                 {route.component}
             </App>,
             container,

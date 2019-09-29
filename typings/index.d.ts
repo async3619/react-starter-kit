@@ -26,6 +26,7 @@ declare module "react-dev-utils/launchEditorEndpoint";
 declare module "react-dev-utils/errorOverlayMiddleware";
 declare module "react-error-overlay";
 declare module "react-test-renderer";
+declare module "apollo-link-logger";
 declare module "isomorphic-style-loader/withStyles" {
     /* eslint no-underscore-dangle:0 */
     /* eslint no-undef:0 */
