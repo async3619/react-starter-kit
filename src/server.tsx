@@ -20,7 +20,7 @@ import config from "./config";
 
 import configureApolloServer, { generateGraphQLContext } from "./data/configureApolloServer";
 import schema from "./data/schema";
-
+import createConnection from "./data/database";
 import createApolloClient from "./utils/createApolloClient.server";
 
 process.on("unhandledRejection", (reason, p) => {
@@ -162,7 +162,7 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-const promise = Promise.resolve(); // models.sync().catch((err: Error) => console.error(err.stack));
+const promise = createConnection().catch((err: Error) => console.error(err.stack));
 if (!module.hot) {
     promise.then(() => {
         app.listen(config.port, () => {

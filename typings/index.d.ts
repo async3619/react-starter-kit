@@ -11,6 +11,14 @@ interface NodeModule {
     hot: any;
 }
 
+declare module NodeJS {
+    import { Connection } from "typeorm";
+
+    interface Global {
+        connection?: Connection;
+    }
+}
+
 // Extend existing modules
 declare module "child_process" {
     interface ChildProcess {
