@@ -1,3 +1,4 @@
+import { getMetadataStorage } from "type-graphql/dist/metadata/getMetadataStorage";
 import path from "path";
 import express, { Request, Response, Application } from "express";
 import browserSync from "browser-sync";
@@ -144,6 +145,7 @@ async function start() {
             .catch((error: Error) => {
                 if (["abort", "fail"].includes(hot.status())) {
                     console.warn(`${hmrPrefix}Cannot apply update.`);
+                    getMetadataStorage().clear();
                     reloadApp();
                     console.warn(`${hmrPrefix}App has been reloaded.`);
                 } else {
