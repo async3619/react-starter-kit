@@ -24,6 +24,7 @@ declare module "react-deep-force-update";
 declare module "webpack-hot-middleware/client";
 declare module "react-dev-utils/launchEditorEndpoint";
 declare module "react-dev-utils/errorOverlayMiddleware";
+declare module "react-dev-utils/typescriptFormatter";
 declare module "react-error-overlay";
 declare module "react-test-renderer";
 declare module "apollo-link-logger";
