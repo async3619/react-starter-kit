@@ -255,6 +255,14 @@ const config = {
 
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],
+        alias: {
+            "@root": resolvePath("src"),
+            "@components": resolvePath("src", "components"),
+            "@routes": resolvePath("src", "routes"),
+            "@generated": resolvePath("src", "__generated__"),
+            "@utils": resolvePath("src", "utils"),
+            "@data": resolvePath("src", "data"),
+        },
     },
 
     resolveLoader: {

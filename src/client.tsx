@@ -4,13 +4,15 @@ import ReactDOM from "react-dom";
 import deepForceUpdate from "react-deep-force-update";
 import queryString from "query-string";
 import { createPath, Location } from "history";
-import App from "./components/App";
-import history from "./history";
-import { updateMeta } from "./DOMUtils";
-import router from "./router";
-import { AppContextType } from "./context";
 
-import createApolloClient from "./utils/createApolloClient.client";
+import App from "@components/App";
+
+import createApolloClient from "@utils/createApolloClient.client";
+
+import history from "@root/history";
+import { updateMeta } from "@root/DOMUtils";
+import router from "@root/router";
+import { AppContextType } from "@root/context";
 
 // Enables critical path CSS rendering
 // https://github.com/kriasoft/isomorphic-style-loader

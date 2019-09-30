@@ -7,21 +7,26 @@ import express, { NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import PrettyError from "pretty-error";
+
+import App from "@components/App";
+import Html from "@components/Html";
+
+import { ErrorPageWithoutStyle } from "@routes/error/ErrorPage";
+import errorPageStyle from "@routes/error/ErrorPage.scss";
+
+import configureApolloServer, { generateGraphQLContext } from "@data/configureApolloServer";
+import schema from "@data/schema";
+import createConnection from "@data/database";
+
+import createApolloClient from "@utils/createApolloClient.server";
+
 import { AppContextType } from "./context";
-import App from "./components/App";
-import Html from "./components/Html";
-import { ErrorPageWithoutStyle } from "./routes/error/ErrorPage";
-import errorPageStyle from "./routes/error/ErrorPage.scss";
 import router from "./router";
+import config from "./config";
+
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 // @ts-ignore
 import chunks from "./chunk-manifest.json"; // eslint-disable-line import/no-unresolved
-import config from "./config";
-
-import configureApolloServer, { generateGraphQLContext } from "./data/configureApolloServer";
-import schema from "./data/schema";
-import createConnection from "./data/database";
-import createApolloClient from "./utils/createApolloClient.server";
 
 process.on("unhandledRejection", (reason, p) => {
     console.error("Unhandled Rejection at:", p, "reason:", reason);

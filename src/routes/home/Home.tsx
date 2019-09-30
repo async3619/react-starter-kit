@@ -2,7 +2,7 @@ import React from "react";
 
 import withStyles from "isomorphic-style-loader/withStyles";
 
-import { GuestsQuery } from "../../__generated__/graphql.client";
+import { GuestsQuery } from "@generated/graphql.client";
 
 import s from "./Home.scss";
 

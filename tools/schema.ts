@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import path from "path";
 
-import { buildSchema } from "../src/data/schema";
+import { buildSchema } from "@data/schema";
 
 export default async function schema() {
     buildSchema({

@@ -1,9 +1,9 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 
-import schema from "./schema";
+import { GraphQLContext } from "@root/types";
 
-import { GraphQLContext } from "../types";
+import schema from "./schema";
 
 export function generateGraphQLContext(): GraphQLContext {
     return {};

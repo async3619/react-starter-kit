@@ -1,11 +1,11 @@
 import React from "react";
 
+import Layout from "@components/Layout";
+import { RouteContext } from "@root/types";
+
+import { GuestsDocument, GuestsQuery, GuestsQueryVariables } from "@generated/graphql.client";
+
 import Home from "./Home";
-
-import Layout from "../../components/Layout";
-
-import { RouteContext } from "../../types";
-import { GuestsDocument, GuestsQuery, GuestsQueryVariables } from "../../__generated__/graphql.client";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function action({ client }: RouteContext) {
