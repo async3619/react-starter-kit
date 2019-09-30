@@ -1,4 +1,8 @@
 query guests {
-    guests
+    guests(index: 0, count: 10) {
+        id
+        title
+        content
+    }
     guestCount
 }

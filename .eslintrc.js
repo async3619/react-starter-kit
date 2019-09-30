@@ -3,12 +3,7 @@
 module.exports = {
     parser: "@typescript-eslint/parser",
 
-    extends: [
-        "airbnb",
-        "plugin:css-modules/recommended",
-        "prettier",
-        "prettier/react",
-    ],
+    extends: ["airbnb", "plugin:css-modules/recommended", "prettier", "prettier/react"],
 
     plugins: ["@typescript-eslint/eslint-plugin", "css-modules", "prettier"],
 
@@ -25,6 +20,9 @@ module.exports = {
     },
 
     rules: {
+        "lines-between-class-members": "off",
+        "no-plusplus": "off",
+
         // Forbid the use of extraneous packages
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
         "import/no-extraneous-dependencies": ["error", { packageDir: "." }],

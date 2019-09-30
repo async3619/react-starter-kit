@@ -2,11 +2,29 @@ import React from "react";
 
 import withStyles from "isomorphic-style-loader/withStyles";
 
+import { GuestsQuery } from "../../__generated__/graphql.client";
+
 import s from "./Home.scss";
 
-class Home extends React.Component {
+type GuestItem = GuestsQuery["guests"][0];
+
+interface Props {
+    guests: GuestsQuery["guests"];
+}
+
+class Home extends React.Component<Props> {
+    public renderGuest = (guest: GuestItem) => {
+        return (
+            <div key={guest.id}>
+                <h2>{guest.title}</h2>
+                <p>{guest.content}</p>
+            </div>
+        );
+    };
     public render() {
-        return <div className={s.root}>Hello World from React Starter Kit!</div>;
+        const { guests } = this.props;
+
+        return <div className={s.root}>{guests.map(this.renderGuest)}</div>;
     }
 }
 

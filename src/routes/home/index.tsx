@@ -15,14 +15,12 @@ async function action({ client }: RouteContext) {
         query: GuestsDocument,
     });
 
-    console.info(guests);
-
     return {
         title: "React Starter Kit",
         chunks: ["home"],
         component: (
             <Layout>
-                <Home />
+                <Home guests={guests} />
             </Layout>
         ),
     };
