@@ -1,5 +1,12 @@
 @import "../variables.scss";
 
+.root {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 /*
  * normalize.css is imported in JS file.
  * If you import external CSS file from your internal CSS
@@ -13,13 +20,14 @@
 html {
     color: #222;
     font-weight: 100;
-    font-size: 1em; /* ~16px; */
+    font-size: 62.5%; /* = 10px; */
     font-family: $font-family-base;
     line-height: 1.375; /* ~22px */
 }
 
 body {
     margin: 0;
+    font-size: 1.6rem;
 }
 
 a {

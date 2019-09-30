@@ -215,6 +215,12 @@ const config = {
                         ],
                     },
 
+                    {
+                        issuer: { not: [reStyle] },
+                        test: /\.svg$/,
+                        loader: "@svgr/webpack",
+                    },
+
                     // Or return public URL to image resource
                     {
                         loader: "file-loader",
@@ -262,6 +268,7 @@ const config = {
             "@generated": resolvePath("src", "__generated__"),
             "@utils": resolvePath("src", "utils"),
             "@data": resolvePath("src", "data"),
+            "@res": resolvePath("res"),
         },
     },
 

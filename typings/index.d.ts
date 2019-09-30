@@ -46,7 +46,7 @@ declare module "isomorphic-style-loader/withStyles" {
         s4?: string,
         s5?: string,
     ) => /* eslint no-undef:0 */
-    (arg0: typeof T) => typeof T;
+    <T>(arg0: T) => T;
     /* eslint import/export:0 */
     export default _default;
 }
@@ -74,3 +74,9 @@ declare module "*.graphql" {
     export default d;
 }
 declare module "!isomorphic-style-loader!*";
+declare module "*.svg" {
+    interface SvgrComponent extends React.FunctionComponent<React.SVGAttributes<SVGElement>> {}
+
+    const value: SvgrComponent;
+    export default value;
+}
