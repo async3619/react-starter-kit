@@ -321,6 +321,10 @@ const clientConfig = {
         new webpack.DefinePlugin({
             "process.env.BROWSER": true,
             __DEV__: isDebug,
+            __NODE__: false,
+            __SERVER__: false,
+            __WEB__: true,
+            __CLIENT__: true,
         }),
 
         // Emit a file with assets paths
@@ -486,6 +490,10 @@ const serverConfig = {
         new webpack.DefinePlugin({
             "process.env.BROWSER": false,
             __DEV__: isDebug,
+            __NODE__: true,
+            __SERVER__: true,
+            __WEB__: false,
+            __CLIENT__: false,
         }),
 
         new ForkTsCheckerWebpackPlugin({

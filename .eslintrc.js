@@ -13,6 +13,10 @@ module.exports = {
 
     globals: {
         __DEV__: true,
+        __WEB__: true,
+        __CLIENT__: true,
+        __NODE__: true,
+        __SERVER__: true,
     },
 
     env: {

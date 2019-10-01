@@ -40,7 +40,7 @@ export default async function createConnection() {
         entities: [GuestEntity],
         synchronize: true,
         dropSchema: true,
-        logging: true,
+        logging: false,
     });
 
     global.connection = connection;

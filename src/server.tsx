@@ -20,6 +20,9 @@ import createConnection from "@data/database";
 
 import createApolloClient from "@utils/createApolloClient.server";
 
+import configureStore from "@root/redux/configureStore";
+import { RuntimeActions } from "@root/redux/actions";
+
 import { AppContextType } from "./context";
 import router from "./router";
 import config from "./config";
@@ -84,6 +87,9 @@ app.get("*", async (req, res, next) => {
             {},
         );
 
+        const store = configureStore({});
+        store.dispatch(RuntimeActions.setInitialTime(Date.now()));
+
         // Global (context) variables that can be easily accessed from any React component
         // https://facebook.github.io/react/docs/context.html
         const context: AppContextType = {
@@ -91,6 +97,7 @@ app.get("*", async (req, res, next) => {
             pathname: req.path,
             query: req.query,
             client: apolloClient,
+            store,
         };
 
         const route = await router.resolve(context);
@@ -104,7 +111,7 @@ app.get("*", async (req, res, next) => {
 
         const data = { ...route };
         const rootComponent = (
-            <App context={context} client={apolloClient} insertCss={insertCss}>
+            <App context={context} client={apolloClient} insertCss={insertCss} store={store}>
                 {route.component}
             </App>
         );
@@ -129,6 +136,7 @@ app.get("*", async (req, res, next) => {
         data.app = {
             apiUrl: config.api.clientUrl,
             cache: apolloClient.extract(),
+            state: context.store.getState(),
         };
 
         // eslint-disable-next-line react/jsx-props-no-spreading

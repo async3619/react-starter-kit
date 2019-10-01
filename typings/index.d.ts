@@ -1,6 +1,10 @@
 // Declare globals
 // eslint-disable-next-line no-unused-vars
 declare const __DEV__: boolean;
+declare const __WEB__: boolean;
+declare const __CLIENT__: boolean;
+declare const __NODE__: boolean;
+declare const __SERVER: boolean;
 
 // Extend globals
 interface Window {

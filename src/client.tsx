@@ -13,6 +13,7 @@ import history from "@root/history";
 import { updateMeta } from "@root/DOMUtils";
 import router from "@root/router";
 import { AppContextType } from "@root/context";
+import configureStore from "@root/redux/configureStore";
 
 // Enables critical path CSS rendering
 // https://github.com/kriasoft/isomorphic-style-loader
@@ -27,7 +28,8 @@ const insertCss = (...styles: any[]) => {
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 const apolloClient = createApolloClient();
-const context: AppContextType = { pathname: "", client: apolloClient };
+const store = configureStore(window.App.state);
+const context: AppContextType = { pathname: "", client: apolloClient, store };
 
 const container = document.getElementById("app");
 let currentLocation = history.location;
@@ -74,7 +76,7 @@ async function onLocationChange(location: Location, action?: any) {
 
         const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
         appInstance = renderReactApp(
-            <App context={context} client={apolloClient} insertCss={insertCss}>
+            <App context={context} client={apolloClient} insertCss={insertCss} store={store}>
                 {route.component}
             </App>,
             container,
