@@ -2,6 +2,9 @@ import React from "react";
 
 import withStyles from "isomorphic-style-loader/withStyles";
 
+import compose from "@utils/compose";
+import connect from "@utils/connect";
+
 import { GuestsQuery } from "@generated/graphql.client";
 
 import s from "./Home.scss";
@@ -10,6 +13,7 @@ type GuestItem = GuestsQuery["guests"][0];
 
 interface Props {
     guests: GuestsQuery["guests"];
+    initialTime: number;
 }
 
 class Home extends React.Component<Props> {
@@ -22,10 +26,20 @@ class Home extends React.Component<Props> {
         );
     };
     public render() {
-        const { guests } = this.props;
+        const { guests, initialTime } = this.props;
 
-        return <div className={s.root}>{guests.map(this.renderGuest)}</div>;
+        return (
+            <div className={s.root}>
+                <h3>Initial Time: {initialTime}</h3>
+                {guests.map(this.renderGuest)}
+            </div>
+        );
     }
 }
 
-export default withStyles(s)(Home);
+export default compose(
+    connect(state => ({
+        initialTime: state.runtime.initialTime,
+    })),
+    withStyles(s),
+)(Home);
