@@ -1,7 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout renders children correctly 1`] = `
-<div>
+<div
+  className="root"
+>
+  <div
+    className="root"
+  >
+    <div
+      className="container"
+    >
+      <logo.svg
+        className="logo"
+      />
+      <h2
+        className="title"
+      >
+        Create React App
+      </h2>
+    </div>
+  </div>
+  <header
+    className="root"
+  >
+    <div
+      className="container"
+    >
+      <logo.svg
+        className="logo"
+      />
+      <h1
+        className="title"
+      >
+        Create React App
+      </h1>
+      <h2
+        className="subtitle"
+      >
+        Set up a modern web app by running one command.
+      </h2>
+    </div>
+  </header>
   <div
     className="child"
   />

@@ -1,5 +1,8 @@
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
+const { pathsToModuleNameMapper } = require("ts-jest/utils");
+const { compilerOptions } = require("./tsconfig");
+
 module.exports = {
     // Modules can be explicitly auto-mocked using jest.mock(moduleName).
     // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
@@ -35,6 +38,10 @@ module.exports = {
 
     globals: {
         __DEV__: true,
+        __NODE__: true,
+        __SERVER__: true,
+        __WEB__: false,
+        __CLIENT__: false,
     },
 
     // https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean
@@ -50,12 +57,13 @@ module.exports = {
     // like images or styles with a single module.
     moduleNameMapper: {
         "\\.(css|less|styl|scss|sass|sss)$": "identity-obj-proxy",
+        ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>/" }),
     },
 
     // modulePathIgnorePatterns: // [array<string>]
     // modulePaths: // [array<string>]
     // notify: false, // [boolean]
-    // preset: // [string]
+    preset: "ts-jest",
     // projects: // [array<string>]
     // clearMocks: // [boolean]
     // reporters: // [array<moduleName | [moduleName, options]>]
