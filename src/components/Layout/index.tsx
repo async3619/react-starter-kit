@@ -2,6 +2,7 @@ import React from "react";
 import withStyles from "isomorphic-style-loader/withStyles";
 
 import Header from "@components/Header";
+import Navigation from "@components/Navigation";
 
 import s from "./index.scss";
 
@@ -15,6 +16,7 @@ class Layout extends React.Component<Props> {
 
         return (
             <div className={s.root}>
+                <Navigation />
                 <Header />
                 {children}
             </div>
