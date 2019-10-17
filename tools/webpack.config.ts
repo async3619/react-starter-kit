@@ -8,9 +8,13 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import typescriptFormatter from "react-dev-utils/typescriptFormatter";
 import resolve from "resolve";
+
 import overrideRules from "./lib/overrideRules";
-import pkg from "../package.json";
+import getLocalIdent from "./lib/getLocalIdent";
+
 import postcssConfig from "./postcss.config";
+
+import pkg from "../package.json";
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
@@ -157,7 +161,7 @@ const config = {
                             sourceMap: isDebug,
                             // CSS Modules https://github.com/css-modules/css-modules
                             modules: {
-                                localIdentName: isDebug ? "[name]-[local]-[hash:base64:5]" : "[hash:base64:5]",
+                                getLocalIdent: getLocalIdent(isDebug),
                             },
                         },
                     },
